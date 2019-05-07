@@ -43,7 +43,7 @@ JZMQ_HPP_FILES = \
 JZMQ_CLASS_FILES = org/zeromq/*.class
 
 $(javac_stamp): $(JZMQ_JAVA_FILES)
-	$(JAVAC) $(JAVACFLAGS) -d . $(JZMQ_JAVA_FILES)
+	$(JAVAC) $(JAVACFLAGS) -d . $(JZMQ_JAVA_FILES) -h .
 	@touch $@
 
 $(jarfile): $(javac_stamp)
@@ -82,8 +82,7 @@ clean-local:
 
 $(JZMQ_H_FILES): $(javah_stamp)
 $(javah_stamp): $(javac_stamp)
-	$(CLASSPATH_ENV) $(JAVAH) -jni -classpath . org.zeromq.ZMQ
-	@touch $@
+	/bin/true
 
 $(srcdir)/ZMQ.cpp: \
 	$(JZMQ_H_FILES) \
